@@ -14,7 +14,6 @@
 #include <linux/cdev.h>
 #include <trace/events/power.h>
 #include <linux/oem/control_center.h>
-#include <linux/oem/houston.h>
 #include <linux/oem/aigov.h>
 
 #ifdef CONFIG_OPCHAIN

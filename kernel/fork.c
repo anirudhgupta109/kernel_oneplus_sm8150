@@ -95,9 +95,6 @@
 #include <linux/thread_info.h>
 #include <linux/cpufreq_times.h>
 
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-#include <oneplus/houston/houston_helper.h>
-
 // tedlin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
 #include <oneplus/control_center/control_center_helper.h>
 
@@ -2017,11 +2014,8 @@ static __latent_entropy struct task_struct *copy_process(
 	trace_task_newtask(p, clone_flags);
 	uprobe_copy_process(p, clone_flags);
 
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-	if (likely(!IS_ERR(p))) {
-		ht_perf_event_init(p);
-		ht_rtg_init(p);
 // tedlin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
+	if (likely(!IS_ERR(p))) {
 		cc_tsk_init((void*) p);
 	}
 	return p;

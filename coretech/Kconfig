@@ -21,11 +21,6 @@ config FSC
 	bool "system layer file status cache"
 	help
 	 To cache absence file and avoid stat call storm
-config HOUSTON
-	default n
-	bool "to collect system-wide and pmu data"
-	help
-	 Realtime temperature monitor
 config CONTROL_CENTER
 	default n
 	bool "control center"

@@ -71,9 +71,6 @@
 #include <asm/pgtable.h>
 #include <asm/mmu_context.h>
 
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-#include <oneplus/houston/houston_helper.h>
-
 // tedlin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
 #include <oneplus/control_center/control_center_helper.h>
 
@@ -197,9 +194,6 @@ void release_task(struct task_struct *p)
 {
 	struct task_struct *leader;
 	int zap_leader;
-
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-	ht_rtg_list_del(p);
 repeat:
 	/* don't need to get the RCU readlock here - the process is dead and
 	 * can't be modifying its own credentials. But shut RCU-lockdep up */
@@ -905,9 +899,6 @@ void __noreturn do_exit(long code)
 
 // tedlin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
 	cc_tsk_free((void*) tsk);
-
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-	ht_perf_event_release(tsk);
 
 	/*
 	 * Flush inherited counters to the parent - before the parent
